@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    .create-post-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .create-post-form {
+        text-align: center;
+        width: 300px;
+        margin: auto;
+        color: white;
+        margin-top: 20px;
+    }
+
+    .create-post-form h1 {
+        margin-bottom: 20px;
+        color: #740FEE;
+        font-size: 24px;
+    }
+
+    .create-post-form label {
+        font-size: 18px;
+        color: #12A5E0;
+        display: block;
+        margin-top: 10px;
+    }
+
+    .create-post-form input[type="text"],
+    .create-post-form textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+        color: #121221;
+    }
+
+    .create-post-form select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+        color: #121221;
+    }
+
+    .create-post-form input[type="submit"] {
+        background-color: #12A5E0;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .create-post-form input[type="submit"]:hover {
+        background-color: #D6E4F0;
+        color: #121221;
+    }
+</style>
+
+<div class="create-post-container">
+    <div class="create-post-form">
+        <h1>Hey {{ user }}, Write something</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+            <label for="{{ form.title.id_for_label }}">Title:</label>
+            {{ form.title }}
+            <br>
+
+            <label for="{{ form.content.id_for_label }}">Content:</label>
+            {{ form.content }}
+            <br>
+
+            <label for="{{ form.categories.id_for_label }}">Categories:</label>
+            {{ form.categories }}
+            <br>
+
+            <label for="{{ form.tags.id_for_label }}">Tags:</label>
+            {{ form.tags }}
+            <br>
+
+            <input type="submit" value="Save">
+        </form>
+    </div>
+</div>
+
+{% endblock content %}
