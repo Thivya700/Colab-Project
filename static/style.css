@@ -453,7 +453,6 @@ footer {
 
 .body{
     display: flex;
-    background-color: #D6E4F0;
     padding: 10px;
     margin-top: 5px;
 }
@@ -503,10 +502,25 @@ footer {
     border: solid 1px #000000;
 }
 
+/* Style for post */
+.topic-container {
+    background-color: #D6E4F0;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 8px;
+}
 
+/* Style for comments container */
+.comments-container {
+    background-color: #A1D9F7;
+    color: black;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 8px;
 
+}
 
-
-
-
-
+/* Style for comments content */
+.comments-container .body {
+    padding: 10px;
+}
