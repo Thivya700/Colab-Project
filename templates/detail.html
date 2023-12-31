@@ -3,14 +3,13 @@
 {% block content %}
 
     <div class="container">
-        <!--Navigation-->
+        <!-- Navigation -->
         <div class="navigate">
             <span><a href="{% url 'home' %}">MyForum - Forums</a> >> <a href="{{post.categories.all.0.get_url}}">{{post.categories.all.0}}</a> >> <a href="{{post.get_url}}">{{post.title}}</a></span>
         </div>
 
-        <!--Topic Section-->
+        <!-- Topic Section -->
         <div class="topic-container">
-            <!--Original thread-->
             <div class="head">
                 <div class="authors">Author</div>
                 <div class="content">Topic: {{post.title}} (Read {% get_hit_count for post %} Times)</div>
@@ -34,8 +33,7 @@
             </div>
         </div>
 
-
-        <!--Comment Area-->
+        <!-- Comment Area -->
         {% if post.closed == True %}
         <div style="background-color:#fff;color:#000;font-weight:bolder;padding:20px;width:100%;"> This Topic Is Closed! </div>
         {% else %}
@@ -48,14 +46,11 @@
             </div>
         </form>
         {% else %}
-<div style="background-color:#fff;color:#000;font-weight:bolder;padding:20px;width:100%;"> You need to <a href="{% url 'signin' %}"><b>login</b></a> to comment or reply.! </div>        
-
+        <div style="background-color:#fff;color:#000;font-weight:bolder;padding:20px;width:100%;"> You need to <a href="{% url 'signin' %}"><b>login</b></a> to comment or reply.! </div>
+        {% endif %}
         {% endif %}
 
-        {% endif %}
-
-        <!--Comments Section-->
-
+        <!-- Comments Section -->
         {% for comment in post.comments.all %}
         <div class="comments-container">
             <div class="body">
@@ -69,7 +64,7 @@
                 <div class="content">
                     {{comment.content}}
                     <br>
-                    {% if request.user.is_authenticted %}
+                    {% if request.user.is_authenticated %}
                     <div class="comment">
                         <button onclick="showReplies('comment{{comment.id}}')">Reply</button>
                     </div>
@@ -77,7 +72,8 @@
                 </div>
             </div>
         </div>
-        <!--Reply Area-->
+
+        <!-- Reply Area -->
         <form action="." method="post">
             {% csrf_token %}
             <div class="comment-area hide" id="comment{{comment.id}}">
@@ -86,8 +82,8 @@
                 <input type="hidden" name="comment-id" value="{{comment.id}}">
             </div>
         </form>
-       
-        <!--Reply section-->
+
+        <!-- Reply section -->
         {% for reply in comment.replies.all %}
         <div class="comments-container" style="width: 95%; margin-left:5%;">
             <div class="body">
@@ -106,9 +102,5 @@
         </div>
         {% endfor %}
         {% endfor %}
-
-       
-        
-
     </div>
-    {% endblock content %}
+{% endblock content %}
